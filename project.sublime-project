@@ -1,0 +1,43 @@
+{
+    "folders":
+    [
+        {
+            "path": ".",
+        },
+    ],
+    "build_systems":
+    [
+        {
+            "name": "Odin Build Debug",
+            "file_regex": "^(.+)\\(([0-9]+):([0-9]+)\\) (.+)$",
+            "shell_cmd": "odin build $project_path/demo -show-timings -vet -debug -out:argy_example.exe",
+        },
+        {
+            "name": "Odin Build Release",
+            "file_regex": "^(.+)\\(([0-9]+):([0-9]+)\\) (.+)$",
+            "shell_cmd": "odin test $project_path/tests -vet -sanitize:address -define:ODIN_TEST_SHORT_LOGS=false -define:ODIN_TEST_ALWAYS_REPORT_MEMORY=true && odin build $project_path/demo -show-timings -vet -no-bounds-check -out:argy_example.exe",
+        },
+        {
+            "name": "Odin Run",
+            "file_regex": "^(.+)\\(([0-9]+):([0-9]+)\\) (.+)$",
+            "shell_cmd": "odin run $project_path -vet -debug -out:argy_example.exe",
+        },
+        {
+            "name": "Odin Test",
+            "file_regex": "^(.+)\\(([0-9]+):([0-9]+)\\) (.+)$",
+            "shell_cmd": "odin test $project_path/tests -out:$project_path/tests/tests.exe -vet -sanitize:address -define:ODIN_TEST_ALWAYS_REPORT_MEMORY=true -define:ODIN_TEST_FANCY=false -define:ODIN_TEST_SHORT_LOGS=true",
+        }
+    ],
+    "settings":
+    {
+        "auto_complete": true,
+        "lsp_format_on_save": true,
+        "LSP":
+        {
+            "odin":
+            {
+                "enabled": true,
+            },
+        },
+    },
+}
