@@ -3,3 +3,5 @@
 *.bin
 *.pdb
 *.sublime-workspace
+*.todo
+notes.txt
